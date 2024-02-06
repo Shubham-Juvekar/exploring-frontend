@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "ES2015", //default: commonjs, ES2015 for module
+    "strict": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "lib": ["es6"],
+    "experimentalDecorators": true
+  },
+  "exclude": ["node_modules"]
+}
