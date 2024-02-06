@@ -1,0 +1,272 @@
+# Introduction to Typescript: Statically-typed programming language which is superset of JS (TypeScript offers all of JavaScript’s
+ features, and an additional layer on top of these). Developed and is maintained by Microsoft.
+The main benefits of using TypeScript include:
+
+Type Safety
+Improved Tooling
+Improved Maintainability
+Backwards Compatibility
+
+Note:
+1) You can use TypeScript even if there are errors in your code. But in this case, TypeScript is warning that your code will likely
+ not run as expected.
+2) type information provided works together with the tools to work with JavaScript at application scale 
+
+# Running Typescript
+
+* TSC CLI: sc is the command line tool for the TypeScript compiler. It compiles TypeScript code into JavaScript code, making it
+ compatible with the browser or any JavaScript runtime environment.
+This command will compile all TypeScript files in your project that are specified in your tsconfig.json file. 
+tsc --help
+1) Create a file with extension (.ts)
+2) Run the command tsx <filename.ts> this will result javascript file which contains the same javascript you fed in.
+
+* ts-node: ts-node is a TypeScript execution and REPL for node.js, with source map and native ESM support.
+ (REPL (READ, EVAL, PRINT, LOOP) is a computer environment similar to Shell (Unix/Linux) and command prompt.)
+ 1) npx ts-node <filename.ts>
+ 2) It JIT transforms TypeScript into JavaScript, enabling you to directly execute TypeScript.
+
+* TS Playground: Online tool which allows you to write TypeScript code and see the JavaScript output.
+
+# Typescript vs Javascript
+TypeScript is a superset of JavaScript that adds optional type annotations and other features such as interfaces, classes,
+and namespaces. JavaScript is a dynamically-typed language that is primarily used for client-side web development and can
+also be used for server-side development.
+
+Here are a few key differences between TypeScript and JavaScript:
+1) Types: TypeScript has optional type annotations while JavaScript is dynamically-typed. This means that in TypeScript, 
+you can specify the data type of variables, parameters, and return values, which can help catch type-related errors at compile-time.
+
+2) Syntax: TypeScript extends JavaScript syntax with features like interfaces, classes, and namespaces. This provides a more
+ robust and organized structure for large-scale projects.
+
+3) Tooling: TypeScript has better tooling support, such as better editor integration, type checking, and code refactoring.
+
+4) Backwards Compatibility: TypeScript is fully compatible with existing JavaScript code, which means you can use TypeScript in any JavaScript environment.
+
+# TS/JS Interoperability
+TypeScript and JavaScript have full interoperability, meaning you can use TypeScript code in JavaScript projects and vice versa.
+
+# tsconfig.json
+1) tsconfig.json is a configuration file in TypeScript that specifies the compiler options for building your project.
+It helps the TypeScript compiler understand the structure of your project and how it should be compiled to JavaScript.
+2) The presence of a tsconfig.json file in a directory indicates that the directory is the root of a TypeScript project.
+
+# Typescript types
+Types can also appear in many more places than just type annotations
+1) string
+2) number
+3) boolean
+4) Array/ ReadonlyArray
+5) any (To escape type checking)
+6) noImplicitAny
+7) Function
+8) object: The special type object refers to any value that isn’t a primitive
+9) null: (JavaScript has two primitive values used to signal absent(null) and uninitialized value (undefined): null and undefined.)
+10) undefined 
+
+strictNullChecks off: Values that might be null or undefined can still be accessed normally, and the values null and undefined can be assigned to a property of any type
+strictNullChecks on: When a value is null or undefined, you will need to test for those values before using methods or properties on that value
+  
+11)void: It represents the return value of functions which don’t return a value
+12)unknown: The unknown type represents any value. This is similar to the any type, but is safer because it’s not legal to do anything with an unknown value 
+This is useful when describing function types because you can describe functions that accept any value without having any values in your function body.
+Conversely, you can describe a function that returns a value of unknown type
+
+13)never: The never type represents values which are never observed. In a return type, this means that the function throws an exception or terminates execution of the program.
+never also appears when TypeScript determines there’s nothing left in a union.
+
+14) Tuple: A tuple type is another sort of Array type that knows exactly how many elements it contains, and exactly which types it contains at specific positions.
+15) Enum: Enums are one of the few features TypeScript has which is not a type-level extension of JavaScript.
+    A) Number enums: Auto-incremented, default value for first member will be 0.
+    B) String enums: Each member has to be constant-initialized with a string literal, or with another string enum member.
+    c) Heterogeneous enums: Enums can be mixed with string and numeric members.
+16) Class: it is a blueprint for creating objects with specific properties and methods
+17) Interface: TypeScript allows you to specifically type an object using an interface that can be reused by multiple objects.
+
+
+
+# Type assertion (Type casting)
+Type assertions in TypeScript are a way to tell the compiler to treat a value as a specific type, regardless of its inferred type.
+
+There are two syntaxes for type assertions in TypeScript:
+
+1) The “angle-bracket” syntax: <T>value
+2) The “as” syntax: value as T
+
+# const assertion
+1) no literal types in that expression should be widened (e.g. no going from "hello" to string)
+2) object literals get readonly properties
+3) array literals become readonly tuples
+
+# Non-null assertion
+The non-null assertion operator (!) is a type assertion in TypeScript that allows you to tell the compiler that a value will never be null or undefined.
+
+
+# Type inference
+the process of automatically determining the type of a variable based on the value assigned to it. This allows you to write code that is more concise and easier to understand,
+as the TypeScript compiler can deduce the types of variables without you having to explicitly specify them.
+
+# Type Compactibility
+TypeScript uses structural typing to determine type compatibility. This means that two types are considered compatible if they have the same structure, regardless of their names.
+
+# Type Aliases
+A Type Alias in TypeScript allows you to create a new name for a type.
+type User = { name: Name; age?: Age };
+
+# Combining Type
+In TypeScript, you can combine types using type union and type intersection.
+
+1) Union types (TypeScript will only allow an operation if it is valid for every member of the union)
+Union Types in TypeScript allow you to specify multiple possible types for a single variable or parameter. A union type is written as a vertical bar | (pipe symbol) separated list of types.
+
+example: let input1: string | number;
+
+2) An intersection type creates a new type by combining multiple existing types. The new type has all features of the existing types.
+To combine types, you use the & operator
+
+syntax: type typeAB = typeA & typeB;
+
+# keyof operator
+The keyof operator in TypeScript is used to get the union of keys from an object type.
+
+# Type guards / Type narrowing
+Type guards are a way to narrow down the type of a variable. This is useful when you want to do something different depending on the type of a variable.
+
+1) instanceof: It is used to check if an object is an instance of a class.
+2) typeof: It returns a string value representing the type of the variable.
+example: "string" ,"number" ,"bigint" ,"boolean" ,"symbol" ,"undefined" ,"object" ,"function"
+3) in: JavaScript has an operator for determining if an object or its prototype chain has a property with a name
+4) Type predicates (is): Type predicates are functions that return a boolean value. They are used to narrow the type of a variable
+5) Equality: TypeScript also uses switch statements and equality checks like ===, !==, ==, and != to narrow types.
+6) Truthiness: we can use any expression in conditionals, &&s, ||s, if statements, Boolean negations (!), and more
+
+# Tagged Interface / Tagged Unions / Discriminated Unions
+For narrowing based on interface/Type attribute is added for recognizing the type (Similar to typeof operator) 
+
+# Typescript Function
+Resourse: https://www.typescriptlang.org/docs/handbook/2/functions.html
+
+# Typescript Interfaces
+Interfaces in TypeScript provide a way to define a contract for a type, which includes a set of properties, methods, and events. 
+It’s used to enforce a structure for an object, class, or function argument. Interfaces are not transpiled to JavaScript and are 
+only used by TypeScript at compile-time for type-checking purposes.
+
+# Types vs Interfaces
+
+1) 
+: Use custom types when you need Unions, Intersections and Mapped Types.
+: Use interface when defining object or class that adhere to a contract.
+
+2) 
+: Interface can extends other interface to inherit their members
+: Custom types can use unions and interface for more complex compositions.
+
+3) 
+: Two or more interface can have same name.
+: Type alias should have unique names.
+
+Resourse: https://www.typescriptlang.org/docs/handbook/2/objects.html
+
+# Interface Declaration
+An interface in TypeScript is a blueprint for creating objects with specific structure. An interface defines a set of properties, 
+methods, and events that a class or object must implement. The interface is a contract between objects and classes and can be used
+to enforce a specific structure for objects in your code.
+
+# Class: class keyword is use to create class (A class in typescript is similar to class in javascript)
+
+1) A class in terms of OOP is blueprint of creating object.
+2) A class is blueprint of creating similar things.
+
+# Inheritance: it allows a class to reuse the functionality of existing class without re-writing
+It is a mechanism in which one class acquires the property of another class.
+
+super: The super keyword is used to access properties on an object literal or class's [[Prototype]], or invoke a superclass's constructor.
+
+# Access Modifier
+1) public/default: Accessible with in(Parent and child) and outside class.
+2) protected: Accessible with in(Parent and child) class.
+3) private: Accessible with Parent class only.
+
+# static keyword: Static methods and properties belong to class rather than instance of object. We can access them directly from class.
+
+# abstract class
+1) abstract class cannot be instantiated.
+2) It is a blueprint for other classes and can have abstract methods which are methods without a body and must be overridden by the subclass.
+3) Abstract classes are useful for defining a common interface or basic functionality that other classes can inherit and build upon.
+
+
+# Interface vs Abstarct class
+* An interface is a contract that defines the properties and what the object that implements it can do.
+* A class is both a contract and the implementation of a factory. An abstract class is also an implementation but incomplete. Especially, an abstract class exists at runtime, 
+even if it has only abstract methods (then instanceof can be used).
+
+Resourse: https://www.typescripttutorial.net/typescript-tutorial/interfaces-vs-abstract-classes/
+
+# Generics 
+1) Generics in TypeScript are a way to write code that can work with multiple data types, instead of being limited to a single data type
+2) Generics allow you to write functions, classes, and interfaces that take one or more type parameters, which act as placeholders for the 
+actual data types that will be used when the function, class, or interface is used
+
+
+# Utiliies types: TypeScript provides several utility types to facilitate common type transformations. Available globally
+
+1) Partial<Type>: Constructs a type with all properties of Type set to optional. This utility will return a type that represents all subsets of a given type.
+2) Required<Type>: Constructs a type consisting of all properties of Type set to required. The opposite of Partial.
+3) Readonly<Type>: Constructs a type with all properties of Type set to readonly, meaning the properties of the constructed type cannot be reassigned.
+4) Record<Keys, Type>: Constructs an object type whose property keys are Keys and whose property values are Type. This utility can be used to map the properties of a type to another type.
+5) Pick<Type, Keys>: Constructs a type by picking the set of properties Keys (string literal or union of string literals) from Type.
+6) Omit<Type, Keys>: Constructs a type by picking all properties from Type and then removing Keys (string literal or union of string literals). The opposite of Pick.
+7) Exclude<UnionType, ExcludedMembers>: Constructs a type by excluding from UnionType all union members that are assignable to ExcludedMembers.
+8) Extract<Type, Union>: Constructs a type by extracting from Type all union members that are assignable to Union.
+9) NonNullable<Type>: Constructs a type by excluding null and undefined from Type.
+10) Parameters<Type>: Constructs a tuple type from the types used in the parameters of a function type Type.
+11) ReturnType<Type>: Constructs a type consisting of the return type of function Type.
+12) InstanceType<Type>: Constructs a type consisting of the instance type of a constructor function in Type.
+13) Awaited<Type>: This type is meant to model operations like await in async functions, or the .then() method on Promises - specifically, the way that they recursively unwrap Promises.
+
+Resourse: https://www.typescriptlang.org/docs/handbook/utility-types.html
+
+# Decorators
+Decorators are a feature of TypeScript that allow you to modify the behavior of a class, property, method, or parameter. 
+They are a way to add additional functionality to existing code, and they can be used for a wide range of tasks, 
+including logging, performance optimization, and validation.
+
+Resourse: https://www.typescriptlang.org/docs/handbook/decorators.html
+
+# Advanced types
+
+1) Mapped Types: Mapped types in TypeScript are a way to create a new type based on an existing type, 
+where each property of the existing type is transformed in some way. Mapped types are declared using a combination 
+of the keyof operator and a type that maps each property of the existing type to a new property type.
+
+2) Conditional Types: Conditional types in TypeScript are a way to select a type based on a condition. 
+They allow you to write a type that dynamically chooses a type based on the types of its inputs.
+Conditional types are declared using a combination of the infer keyword and a type that tests a condition and 
+selects a type based on the result of the test.
+
+3) Literal Types: Literal types in TypeScript are a way to specify a value exactly, rather than just a type. 
+Literal types can be used to enforce that a value must be of a specific type and a specific value. 
+Literal types are created by using a literal value, such as a string, number, or boolean, as a type.
+
+4) Template Literal Types: Template literal types in TypeScript are a way to manipulate string values as types. 
+They allow you to create a type based on the result of string manipulation or concatenation. 
+Template literal types are created using the backtick (“) character and string manipulation expressions within the type.
+
+5) Recursive Types: Recursive types in TypeScript are a way to define a type that references itself. 
+Recursive types are used to define complex data structures, such as trees or linked lists, 
+where a value can contain one or more values of the same type.
+
+6) Indexed Access Types: We can use an indexed access type to look up a specific property on another type.
+
+# Typescript modules and Ecosystem
+Refer official documentation and Roadmap for details
+
+
+
+
+
+
+
+
+
